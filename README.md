@@ -1,5 +1,7 @@
 # Rails + Stripe Connect Example Application
 
+First things first: this repository is a 1:1 port from https://github.com/rfunduk/rails-stripe-connect-example. I have updated the application to work for Rails 5.0.2.
+
 This repository contains a bare-bones example Stripe Connect application.
 It's purpose is to demonstrate the various pieces needed to get up and
 running with your own application.
@@ -8,15 +10,13 @@ running with your own application.
 
 ## Pre-requisites
 
-This application currently uses the following Stripe API version: [**2015-04-07**](https://stripe.com/docs/upgrades#2015-04-07)
+This application currently uses the following Stripe API version: [**2017-04-06**](https://stripe.com/docs/upgrades#2017-04-06)
 
-This application is based on **Rails 4.2** and running on **Ruby 2.1** (with
-[`bundler`](http://bundler.io/)). It will probably work fine with versions after
-these, and I will endeavour to keep it up to date.
+This application is based on **Rails 5.0.2** and running on **Ruby 2.4** (with
+[`bundler`](http://bundler.io/)).
 
 You need a Stripe account configured with a Connect application.
-That can be setup in your
-[Account Settings under 'Apps'](https://dashboard.stripe.com/account/applications/settings).
+That can be setup in your [Account Settings under 'Apps'](https://dashboard.stripe.com/account/applications/settings).
 Here's what it should look like configured:
 
 ![App Configuration](./docs/app-setup.png)
@@ -33,8 +33,8 @@ you can also get in [Account Settings under 'API Keys'](https://dashboard.stripe
 
 To get started, first clone this repo and install dependencies:
 
-    git clone git@github.com:rfunduk/rails-stripe-connect-example.git
-    cd rails-stripe-connect-example
+    git clone git@github.com:nickvanderwildt/stripe-connect.git
+    cd stripe-connect
     bundle install
 
 Next we need to run the setup script that will put your various Stripe
@@ -42,18 +42,18 @@ credentials in the appropriate place. Since this will be asking for API
 keys, you probably want to [read it over](./lib/tasks/setup.rake) first
 to be confident nothing nefarious is being done with your API keys :)
 
-    bin/rake app:setup
+    rails app:setup
 
 Once you get through that, your keys will be in `config/secrets.yml` and
 picked up by Rails when you start it.
 
 Now load the schema into the database:
 
-    bin/rake db:schema:load
+    rails db:schema:load
 
 And start up the server:
 
-    bin/rails s
+    rails s
 
 Then as usual visit [http://localhost:3000](http://localhost:3000) in your
 browser of choice.
@@ -94,16 +94,13 @@ of connection:
 ##### 1. OAuth Standalone
 
 Create an account or connect to an existing account via an OAuth flow.
-
 You may want to do this in an incognito window or similar so that you don't
 accidentally connect your platform/main account to itself which will be
 very confusing.
-
 It's probably best to make another Stripe account with a test email
 address (eg, with Gmail you can do things like `you+stripetest1@gmail.com`
 to make this easier), or you can just use the 'Create New Account...'
 option in the menu at the top right of your Stripe dashboard.
-
 When you click 'Connect', look for the development mode bar
 at the top of the page:
 
@@ -117,22 +114,17 @@ This account + Stripe connection becomes the 'seller'.
 
 You can create a standalone Stripe account via the API, which doesn't require
 the user to leave your site at all.
-
 Doing this is a simple matter of choosing a country and clicking 'Create'
-
 This account + Stripe connection becomes the 'seller'.
 
 ##### 3. Managed Account via API
 
 You can create an entirely managed-by-you Stripe account via the API.
 With this method the user will have the least interaction with Stripe.
-
 Doing this is a simple matter of choosing a country, agreeing to the Stripe
 Terms of Service, and clicking 'Create'.
-
 Currently managed accounts are in beta and only available to US or Canadian
 platform accounts.
-
 This account + Stripe connection becomes the 'seller'.
 
 
@@ -140,7 +132,6 @@ This account + Stripe connection becomes the 'seller'.
 
 Now log out of the example app and signup again for another account.
 This time don't bother connecting to Stripe (although you can if you want).
-
 This account becomes the 'buyer'.
 
 ### Step 4
@@ -155,6 +146,5 @@ subscribe to a plan.
 Go through the code! I've tried to heavily comment the relevant and most
 important parts of the code. Let me know if anything is unclear or
 broken by opening an issue or [sending me an email](http://ryanfunduk.com).
-
 I suggest perusing [the Connect docs](https://stripe.com/docs/connect) before
 trying to dig into the code.

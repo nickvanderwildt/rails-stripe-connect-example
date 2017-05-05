@@ -1,4 +1,4 @@
-%nav.navbar.navbar-inverse
+%nav.navbar.navbar-default.navbar-inverse
   .container-fluid
     .navbar-header
       %button.navbar-toggle.collapsed{ type: 'button', data: { toggle: 'collapse', target: '#navbar-links' } }
@@ -7,7 +7,6 @@
         %span.icon-bar
 
       %p.navbar-text
-        %span.glyphicon.glyphicon-chevron-right
         %span.hidden-xs Logged in as
         %a{ href: user_path( current_user ) }
           %strong= current_user.name

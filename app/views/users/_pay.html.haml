@@ -2,7 +2,6 @@
   .panel.panel-primary
     .panel-body
       = form_tag pay_user_path( @user ) do
-        .indicator
         = hidden_field_tag :token
         %button.pull-right.btn.btn-primary.btn-lg.pay-button Pay $10
 
@@ -18,7 +17,6 @@
   .panel.panel-primary
     .panel-body
       = form_tag subscribe_user_path( @user ) do
-        .indicator
         = hidden_field_tag :token
         = hidden_field_tag :plan
         %button.pull-right.btn.btn-primary.btn-lg.subscribe-button{ disabled: true } Subscribe
@@ -57,8 +55,8 @@
   // You can select to pay either directly or via the platform, so
   // we need both publishable keys here.
   window.publishable = {
-    platform: #{Rails.application.secrets.stripe_publishable_key.to_json},
-    connected: #{@user.publishable_key.to_json}
+    platform: "#{Rails.application.secrets.stripe_publishable_key}",
+    connected: "#{@user.publishable_key}"
   };
-  window.currentUserEmail = #{current_user.email.to_json};
-  window.payPath = #{pay_user_path( @user ).to_json};
+  window.currentUserEmail = "#{current_user.email}";
+  window.payPath = "#{pay_user_path( @user )}";

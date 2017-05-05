@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,20 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150318194136) do
+ActiveRecord::Schema.define(version: 20170505130741) do
 
   create_table "users", force: :cascade do |t|
-    t.string   "name",                   limit: 255
-    t.string   "email",                  limit: 255
-    t.string   "password_digest",        limit: 255
-    t.string   "publishable_key",        limit: 255
-    t.string   "secret_key",             limit: 255
-    t.string   "stripe_user_id",         limit: 255
-    t.string   "currency",               limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.string   "publishable_key"
+    t.string   "secret_key"
+    t.string   "stripe_user_id"
+    t.string   "currency"
     t.string   "stripe_account_type"
-    t.text     "stripe_account_status",              default: "{}"
+    t.text     "stripe_account_status"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
 end
